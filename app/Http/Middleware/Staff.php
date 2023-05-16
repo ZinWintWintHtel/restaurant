@@ -19,6 +19,8 @@ class Staff
         if(!Auth::guard('staff')->check()){
 		    return redirect()->route('staff_login_form')->with('msg','Please Login First!');
 		}
+
+
         return $next($request);
     }
 }

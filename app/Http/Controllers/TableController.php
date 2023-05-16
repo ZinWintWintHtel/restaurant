@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TableController extends Controller
 {
@@ -12,7 +13,8 @@ class TableController extends Controller
      */
     public function index()
     {
-        //
+        $tables = Table::paginate(7);
+        return view('staff.table')->with('tables',$tables);
     }
 
     /**
@@ -20,7 +22,7 @@ class TableController extends Controller
      */
     public function create()
     {
-        //
+        return view('staff.create_new_table');
     }
 
     /**
@@ -28,15 +30,26 @@ class TableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'table_name'=>'required',
+            'max_capacity'=>'required',
+        ]);
+
+        DB::table('tables')->insert([
+            'table_name'=>$request->table_name,
+            'max_capacity'=>$request->max_capacity,
+        ]);
+
+        return redirect()->route('staff.table_index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Table $table)
+    public function show(Request $request)
     {
-        //
+        $table = DB::table('tables')->where('id',$request->id)->first();
+        return view('staff.update_table_form')->with('table',$table);
     }
 
     /**
@@ -50,16 +63,31 @@ class TableController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Table $table)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'table_name'=>'required',
+            'max_capacity'=>'required',
+        ]);
+
+        DB::table('tables')
+        ->where('id',$request->id)
+        ->update([
+            'table_name'=>$request->table_name,
+            'max_capacity'=>$request->max_capacity,
+        ]);
+
+        return redirect()->route('staff.table_index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Table $table)
+    public function delete(Request $request)
     {
-        //
+        $table = Table::find($request->id);
+        $table->delete();
+
+        return redirect()->route('staff.table_index');
     }
 }

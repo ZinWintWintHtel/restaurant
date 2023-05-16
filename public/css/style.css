@@ -79,7 +79,7 @@ Reservation
     margin-top: 2rem;
     width: 80%;
 }
-.reservationForm input{
+.reservationForm .userInput{
     width: 100%;
     margin-bottom: 2rem;
     height: 3rem;
@@ -91,6 +91,7 @@ Reservation
     box-shadow: 1px 1px 1px rgb(140, 136, 136);
 }
 .reserveNowBtn{
+    width: 25%;
     padding: 1rem 2rem;
     border: none;
     font-family: 'Lora', serif;
@@ -177,6 +178,40 @@ Reservation
 .galleryBox a{
     position: absolute;
     z-index: 2;
+}
+
+/****** User Dashboard ***********/
+.userDashboardNav{
+    border: 1px solid black;
+    border-bottom: none;
+    background-color: white;
+    display: inline-block;
+    width: 90%;
+    /* border-radius: 0.5rem; */
+}
+
+.userDashboardNav:hover{
+    background-color: orange;
+}
+
+.reservedLogoImg{
+    width: 120px;
+    height: auto;
+}
+
+.activesidebar{
+    background-color: orange;
+}
+
+.selectInput{
+    width: 70%;
+    padding: 0.5rem;
+}
+
+.reviewInput{
+    width: 72%;
+    height: 10rem;
+    padding: 0.5rem;
 }
 
 

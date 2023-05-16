@@ -1,0 +1,30 @@
+.text-lora{
+    font-family: 'Lora', serif;
+}
+
+.text-loster{
+    font-family: 'Lobster', cursive;
+}
+
+.bg-orange{
+    background-color: rgb(247, 121, 72);
+}
+
+.loginBtn{
+    padding: 0.5rem 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: whitesmoke;
+    color: lightsalmon;
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    
+}
+
+.loginBtn:hover{
+    background-color: lightsalmon;
+    color: white;
+    border: 3px solid white;
+}
+

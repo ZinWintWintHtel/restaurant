@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6 bg-warning p-5 m-5 rounded rounded-3 shadow">
+        <div class="col-md-6 bg-orange p-5 m-5 rounded rounded-3 shadow">
             <h1 class="text-center text-white pb-5 " style="font-family: 'Lobster', cursive;">Welcome!</h1>
             <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -49,18 +49,19 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-lg btn-success">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button type="submit" class="loginBtn me-2 shadow">
                                     {{ __('Login') }}
                                 </button>
 
                                 
-                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                    <a class="registerLink text-black text-lora" href="{{ route('register') }}">
                                         {{ __('Not have an account?') }}
                                     </a>
                                 
                             </div>
                         </div>
+
                     </form>            
         </div>
     </div>

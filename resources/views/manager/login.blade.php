@@ -14,6 +14,10 @@
 				<img src="{{asset('images/logo.png')}}" alt="form">
 			</div>
 			<form class="form-detail d-flex flex-column m-auto" action="{{route('manager.login')}}" method="get">
+			@csrf
+			@if(Session::has('msg'))
+                <h2 style="color:red;">{{ session::get('msg') }}</h2>
+            @endif
 				<h2 class="h2" style="font-family: 'Lobster', cursive;">Login To Manager Dashboard</h2>
 				<div class="form-row">
 					<input type="email" name="email" id="your-email" class="input-text" placeholder="Email Address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">

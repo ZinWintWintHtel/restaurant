@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.reservePage{
+    width: 100%;
+    height: 100vh;
+}
+.text-lora{
+    font-family: 'Lora', serif;
+}
+.text-lobster{
+    font-family: 'Lobster', cursive;
+}
+.bg-orange{
+    background: linear-gradient(to left,#f3ad77,#eba168, #eb9553);
+}
+.text-orange{
+    color: #e28743;
+}
+.logoImg{
+    width: 70px;
+    height: auto;
+}
+hr{
+    border: 2px solid black;
+}
+
+.selectInput{
+    width: 70%;
+    padding: 0.5rem;
+}
+.paymentMethodForm{
+    width: 90%;
+    padding: 0.5rem;
+}
+.submitBtn{
+    padding: 1rem 1.8rem;
+    border: none;
+    font-family: 'Lora', serif;
+    border-radius: 1.5rem;
+    font-weight: bold;
+}
+
+.paymentMethodImg{
+    width: 100px;
+    height: 100px;
+}

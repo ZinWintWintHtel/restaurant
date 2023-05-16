@@ -1,3 +1,21 @@
+.profileImg{
+  width: 100px;
+  height: auto;
+}
+
+.profileForm{
+  width: 60%;
+  
+}
+
+.text-orange{
+  color: rgb(199, 133, 12);
+
+}
+.bg-gray{
+  background-color: #f2ecec;
+}
+
 .text-lora{
     font-family: 'Lora', serif;
 }

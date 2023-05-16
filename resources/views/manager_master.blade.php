@@ -8,6 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
      <!-- Google Fonts -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,15 +18,21 @@
 
     <!-- bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    
+
+    <!-- Import Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   
     <link rel="stylesheet" href="{{asset('css/manager_master.css')}}" />
+    <script src="{{asset('js/manager.js')}}"></script>
     <title>Hot Hot Buffet - Manager Dashboard</title>
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div class="bg-white" id="sidebar-wrapper">
+
+        <!-- /#sidebar-wrapper -->
+        <div class="bg-white" id="sidebar-wrapper"> 
             <div class="sidebar-heading py-4  fs-4 fw-bold text-uppercase border-bottom">
                 <a href="{{url('/')}}" target="_blank" class="text-decoration-none primary-text">
                 <div class="d-flex m-auto" style="">
@@ -31,30 +40,20 @@
                     <span class="text-lora fs-5">Hot Hot Buffet</span>
                 </div>
                 </a>
-                
             </div>
-            <div class="list-group list-group-flush my-3">
-                <a href="" class="list-group-item list-group-item-action bg-transparent  active"><i
-                        class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="" class="list-group-item list-group-item-action bg-transparent  fw-bold"><i
-                        class="fas fa-project-diagram me-2"></i>Information</a>
-                <a href="" class="list-group-item list-group-item-action bg-transparent  fw-bold">
-                <i class="bi bi-people-fill me-2 fs-5"></i>
-                Staff</a>
-                <a href="" class="list-group-item list-group-item-action bg-transparent  fw-bold"><i
-                        class="fas fa-paperclip me-2"></i>Payment Methods</a>
-                <a href="" class="list-group-item list-group-item-action bg-transparent  fw-bold">
-                <i class="bi bi-currency-dollar me-2 fs-5"></i>Fees</a>
-                <a href="" class="list-group-item list-group-item-action bg-transparent  fw-bold"><i
-                        class="fas fa-chart-line me-2"></i>Reports</a>
-                
+            <div>
+                @section('sidebar')
+
+                @show
             </div>
+
         </div>
+
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4 ">
                 <div class="d-flex align-items-center text-white">
                 <i class="bi bi-text-left fs-1"></i>
                     <h2 class="fs-2 m-0">Manager Dashboard</h2>
@@ -74,7 +73,8 @@
                                 <i class="fas fa-user me-2"></i>{{Auth::guard('manager')->user()->name}}
                             </a>
                             <ul class="dropdown-menu text-lora" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{route('manager.profile')}}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{route('manager.view_reservation')}}">Reservation</a></li>
                                 <li><a class="dropdown-item" href="{{route('manager.logout')}}">Logout</a></li>
                             </ul>
                         </li>
@@ -82,14 +82,16 @@
                 </div>
             </nav>
 
-            @section('content')
+            <div>
+                @section('content')
 
-            @show
+                @show
+            </div>
+
+            
 
                        
         </div>
-    </div>
-    <!-- /#page-content-wrapper -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
