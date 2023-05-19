@@ -18,8 +18,6 @@ class CustomerFeedbackController extends Controller
         return view('feedback_form')->with('restaurant_detail',$restaurant_detail)->with('phones',$phones);
     }
 
-
-
     /**
      * Display a listing of the resource.
      */
@@ -30,7 +28,7 @@ class CustomerFeedbackController extends Controller
         ->paginate(2);
         return view('manager.view_customer_feedback')->with('customer_feedbacks',$customer_feedbacks);
     }
-
+    
     /* monthly feedback report in manager dashboard */
     public function monthCustomerFeedback(Request $request)
     {
@@ -60,19 +58,10 @@ class CustomerFeedbackController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'user_id' => 'required',
             'rating' => 'required',
@@ -90,39 +79,6 @@ class CustomerFeedbackController extends Controller
         $phones = DB::table('phones')->where('restaurant_detail_id',$restaurant_detail->id)->get();
 
          
-        return redirect()->route('user.feedback')->with('restaurant_detail',$restaurant_detail)->with('phones',$phones);
-                        
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(CustomerFeedback $customerFeedback)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(CustomerFeedback $customerFeedback)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, CustomerFeedback $customerFeedback)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(CustomerFeedback $customerFeedback)
-    {
-        //
+        return redirect()->route('user.feedback')->with('restaurant_detail',$restaurant_detail)->with('phones',$phones);                 
     }
 }

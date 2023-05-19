@@ -52,13 +52,6 @@ class TableController extends Controller
         return view('staff.update_table_form')->with('table',$table);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Table $table)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

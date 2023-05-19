@@ -4,7 +4,7 @@
 }
 
 .page-content {
-	width: 100%;
+			width: 100%;
 	margin:  0;
 	background-image: -moz-linear-gradient( 136deg, rgb(0,0,70) 0%, rgb(28,181,224) 100%);
     background-image: -webkit-linear-gradient( 136deg, rgb(0,0,70) 0%, rgb(28,181,224) 100%);

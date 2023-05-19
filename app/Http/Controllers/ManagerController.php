@@ -20,9 +20,7 @@ class ManagerController extends Controller
     public function viewReservation(){
         $today = date('Y-m-d');
         $reservations = Reservation::where('date',$today)->paginate(7);
-        return view('manager.view_reservation')->with('reservations',$reservations);
-
-        
+        return view('manager.view_reservation')->with('reservations',$reservations);  
     }
 
     /* Display view for update profile manager dashboard*/
@@ -38,6 +36,7 @@ class ManagerController extends Controller
             'name'=>'required|alpha',
             'email'=>'required|email',
             'phone'=>'required|min:9|max:11',
+            'old_photo'=>'required',
         ]);
 
 
@@ -50,13 +49,18 @@ class ManagerController extends Controller
             ->where('id',$request->id)
             ->update([
                 'photo'=>$request->file('new_photo')->getClientOriginalName(),
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
             ]);
 
             $img = $request->file('new_photo')->getClientOriginalName();
             $request->new_photo->move(public_path('images'), $img);
+
+            $imagePath = public_path('images/'.$request->old_photo);
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+            }
     
     
             return redirect()->route('manager.profile');
@@ -74,8 +78,7 @@ class ManagerController extends Controller
             return redirect()->route('manager.profile');
         }
     }
-      
-    
+         
     /* Update Manager Password*/
     public function changePasswordForm(){
         return view('manager.change_password_form');
@@ -100,7 +103,6 @@ class ManagerController extends Controller
         else{
             return redirect()->back()->with('msg','Old password does not match');
         }
-
     }
 
     /**
@@ -245,9 +247,6 @@ class ManagerController extends Controller
                         ->with('staff_count',$staff_count)->with('table_count',$table_count)->with('monthly_guests',$monthly_guests)
                         ->with('default_reservations',$default_reservations)->with('default_guest_reservations',$default_guest_reservations);
             }
-        
-
-
     }
 
     /* Manager Dashboard number of reservation between start date and end date report*/
@@ -296,9 +295,6 @@ class ManagerController extends Controller
                     ->with('staff_count',$staff_count)->with('table_count',$table_count)->with('reservations',$reservations)
                     ->with('default_monthly_guests',$default_monthly_guests)->with('default_guest_reservations',$default_guest_reservations);
         }
-
-
-
     }
 
     /* Manager Dashboard Number of reservation by Guest Number report*/
@@ -349,58 +345,6 @@ class ManagerController extends Controller
                     ->with('staff_count',$staff_count)->with('table_count',$table_count)->with('guest_reservations',$guest_reservations)
                     ->with('default_monthly_guests',$default_monthly_guests)->with('default_reservations',$default_reservations);
         }
-
         
-    }
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Manager $manager)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Manager $manager)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Manager $manager)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Manager $manager)
-    {
-        //
     }
 }

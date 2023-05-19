@@ -2,12 +2,14 @@
 
 @section('sidebar')
 
+
+
 <div class="list-group list-group-flush my-3">
                 <a href="{{ route('manager.dashboard') }}" class=" list-group-item list-group-item-action bg-transparent fw-bold" onclick="addClass(this);">
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                     <a href="{{route('manager.customer_feedback')}}" class="list-group-item list-group-item-action bg-transparent  fw-bold"><i
                         class="fas fa-chart-line me-2"></i>Customer Feedback</a>
-                <a href="{{route('manager.info')}}" class=" list-group-item list-group-item-action bg-transparent  fw-bold" ><i
+                        <a href="{{route('manager.info')}}" class=" list-group-item list-group-item-action bg-transparent  fw-bold" ><i
                         class="fas fa-project-diagram me-2"></i>Information</a>
                 <a href="{{route('manager.staff')}}" class=" list-group-item list-group-item-action bg-transparent  fw-bold" >
                 <i class="bi bi-people-fill me-2 fs-5"></i>
@@ -15,12 +17,14 @@
                 <a href="{{route('manager.paymentmethod')}}" class="active list-group-item list-group-item-action bg-transparent  fw-bold" ><i
                         class="fas fa-paperclip me-2"></i>Payment Methods</a>
                 <a href="{{route('manager.fee')}}" class=" list-group-item list-group-item-action bg-transparent  fw-bold" >
-                <i class="bi bi-currency-dollar me-2 fs-5"></i>Fees</a>
+         <i class="bi bi-currency-dollar me-2 fs-5"></i>Fees</a>
                 
             
             </div>
 
 @endsection
+
+
 
 @section('content')
 

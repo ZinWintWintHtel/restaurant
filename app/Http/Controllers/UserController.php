@@ -34,7 +34,6 @@ class UserController extends Controller
     /* update user information */
     public function update(Request $request){
 
-        // dd($request->all());
         $request->validate([
             'name'=>'required|alpha',
             'email'=>'required|email',
@@ -51,10 +50,6 @@ class UserController extends Controller
 
 
             return redirect()->route('profile_show');
-        
-
-
-
     }
 
     /* view user password update form*/
@@ -109,12 +104,7 @@ class UserController extends Controller
         else{
             return view('staff.customer')->with('users',$users)->with('search_user',$search_user);
         }
-        
-
 
     }
-
-    
-
 
 }

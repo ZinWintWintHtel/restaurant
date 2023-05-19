@@ -110,7 +110,7 @@
             <div class="col-6">
               <select name="payment_method" id="" class="text-lora paymentMethodForm">
                 @foreach($payment_methods as $payment_method)
-                <option value="{{$payment_method->id}}" class="">{{$payment_method->method_name}}</option>
+                <option name="payment_method" value="{{$payment_method->id}}" class="">{{$payment_method->method_name}}</option>
                 @endforeach
               </select>
             </div>

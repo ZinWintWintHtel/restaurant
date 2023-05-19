@@ -67,20 +67,22 @@ class StaffController extends Controller
                 'new_photo'=>'mimes:jpeg,png,jpg,jfif,gif,svg|max:70480',
             ]);
     
-
-
             DB::table('staff')
             ->where('id',$request->id)
             ->update([
                 'photo'=>$request->file('new_photo')->getClientOriginalName(),
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
             ]);
 
             $img = $request->file('new_photo')->getClientOriginalName();
             $request->new_photo->move(public_path('images'), $img);
-    
+
+            $imagePath = public_path('images/'.$request->old_photo);
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+            }
     
             return redirect()->route('staff.profile');
         }
@@ -218,17 +220,8 @@ class StaffController extends Controller
      */
     public function show(Request $request)
     {
-        // dd($request->all());
         $staff = DB::table('staff')->where('id',$request->id)->first();
         return view('staff.update_form')->with('staff',$staff);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Staff $staff)
-    {
-        //
     }
 
     /**
@@ -236,7 +229,6 @@ class StaffController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request->file('photo')->getClientOriginalName());
         $request->validate([
             'name'=>'required|alpha',
             'email'=>'required|email',
@@ -286,8 +278,6 @@ class StaffController extends Controller
             ->update([
             'deleted_at'=>Carbon::now(),
             ]);
-
-
         return redirect()->route('manager.staff');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class PaymentMethodController extends Controller
 {
@@ -61,8 +62,6 @@ class PaymentMethodController extends Controller
         return view('paymentmethod.update_form')->with('payment_method',$payment_method);
     }
 
-
-
     /**
      * Update the specified resource in storage.
      */
@@ -72,6 +71,7 @@ class PaymentMethodController extends Controller
             'method_name'=>'required',
             'account_name'=>'required',
             'account_number'=>'required|min:9',
+            'old_method_image'=>'required',
         ]);
 
 
@@ -84,13 +84,18 @@ class PaymentMethodController extends Controller
             ->where('id',$request->id)
             ->update([
                 'method_image'=>$request->file('new_method_image')->getClientOriginalName(),
-            'method_name'=>$request->method_name,
-            'account_name'=>$request->account_name,
-            'account_number'=>$request->account_number,
+                'method_name'=>$request->method_name,
+                'account_name'=>$request->account_name,
+                'account_number'=>$request->account_number,
             ]);
 
             $img = $request->file('new_method_image')->getClientOriginalName();
             $request->new_method_image->move(public_path('images'), $img);
+
+            $imagePath = public_path('images/'.$request->old_method_image);
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+            }
     
     
             return redirect()->route('manager.paymentmethod');

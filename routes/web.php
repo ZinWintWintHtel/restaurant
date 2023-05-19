@@ -156,11 +156,6 @@ Route::post('/reservation/update',[ReservationController::class,'update'])->name
 Route::get('/payment/view',[PaymentController::class,'show'])->name('staff.payment_view')->middleware('staff');
 Route::get('/payment/confirm',[PaymentConfirmController::class,'edit'])->name('staff.payment_confirm_edit')->middleware('staff');
 Route::post('/payment/confirm',[PaymentConfirmController::class,'store'])->name('staff.payment_confirm_store')->middleware('staff');
-
-
-
-
-
 });
 /****************End Staff Routes ****************/
 

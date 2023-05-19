@@ -59,27 +59,9 @@ class RestaurantDetailController extends Controller
     {
         $restaurant_detail = RestaurantDetail::first();
         $phone = DB::table('phones')->where('restaurant_detail_id',$restaurant_detail->id)->first();
-        // foreach($phones as $phone){
-        //     var_dump($phone->number);
-        // }
         return view('info.dashboard')->with('restaurant_detail',$restaurant_detail)->with('phone',$phone);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * show update form for restaurant details in manager dashboard
@@ -89,14 +71,6 @@ class RestaurantDetailController extends Controller
         $restaurant_detail = DB::table('restaurant_details')->where('id',$id)->first();
         $phone = DB::table('phones')->where('restaurant_detail_id',$restaurant_detail->id)->first();
         return view('info.update_form')->with('restaurant_detail',$restaurant_detail)->with('phone',$phone);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(RestaurantDetail $restaurantDetail)
-    {
-        //
     }
 
     /**
@@ -139,11 +113,4 @@ class RestaurantDetailController extends Controller
             return redirect()->route('manager.info');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(RestaurantDetail $restaurantDetail)
-    {
-        //
-    }
 }

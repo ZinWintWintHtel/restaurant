@@ -110,11 +110,11 @@
                     @csrf
                     <div class="row">
                       <div class="col-lg-4 col-6">
-                        <input type="text" name="date" id="" placeholder="Date" onclick="this.type='date';" class="userInput" required> 
+                        <input type="text" name="date" id="" min="{{now()->addDay()->format('Y-m-d')}}" max="{{now()->addWeek()->format('Y-m-d')}}" placeholder="Date" onclick="this.type='date';" class="userInput" required> 
                         
                       </div>
                       <div class="col-lg-4 col-6">
-                        <input type="text" name="time" id="" placeholder="Time" onclick="this.type='time';" class="userInput" required>
+                        <input type="text" name="time" min="{{$restaurant_detail->opening_hour}}" max="{{$restaurant_detail->closing_hour}}" id="" placeholder="Time" onclick="this.type='time';" class="userInput" required>
                       </div>
                       <div class="col-lg-4 col-6">
                         <input type="number" name="guest_number" id="" placeholder="Guest Num" class="userInput" required>

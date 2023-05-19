@@ -13,22 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
 
     /* Welcome page view */
     public function index()
@@ -36,19 +24,13 @@ class HomeController extends Controller
         $id = Auth::user()->id;
         $restaurant_detail = RestaurantDetail::first();
         $phones = DB::table('phones')->where('restaurant_detail_id',$restaurant_detail->id)->get();
-        // $reservations = DB::table('reservations')->where('user_id',$id)->where('status','!=','completed')->get();
         $reservations = DB::table('reservations')->where('user_id',$id)->where('status','!=','completed')->get();
         return view('home')->with('reservations',$reservations)->with('restaurant_detail',$restaurant_detail)->with('phones',$phones);
     }
 
-    // public function show(Payment $payment){
-    //     dd($payment->date);
-    // }
-
     /* user dashboard payment history view */
     public function paymentHistory(Request $request)
     {
-        // dd($request->reservation_id);
         $payment = DB::table('payments')->where('reservation_id',$request->reservation_id)->first();
         $payment_method = DB::table('payment_methods')->where('id',$payment->payment_method_id)->first();
         $payment_confirm = DB::table('payment_confirms')->where('payment_id',$payment->id)->first();
@@ -81,6 +63,5 @@ class HomeController extends Controller
         $customer_feedbacks = DB::table('customer_feedback')->where('user_id',$id)->get();
         return view('customer_feedback')->with('customer_feedbacks',$customer_feedbacks)->with('restaurant_detail',$restaurant_detail)->with('phones',$phones);
     }
-
 
 }
